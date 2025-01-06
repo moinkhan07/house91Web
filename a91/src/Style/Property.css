@@ -1,0 +1,21 @@
+
+
+.options-container-1{
+    border-radius: 15px;
+    width: 70%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray;
+    padding: 10px 0px;
+    background-color: #f9f9f9;
+}
+
+@media (max-width:768px){
+    .options-container-1 {
+       width: 92%;
+       padding: 5px 8px;
+    }
+}

@@ -1,0 +1,289 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+  z-index: 9; /* Below the popup but above the main content */
+  pointer-events: none; /* Allows clicks to pass through */
+}
+.login-input {
+  position: relative;
+  display: flex;
+  border: 1px solid transparent;
+  outline: none;
+  width: 85%;
+  border-radius: 21px;
+  margin: auto;
+  margin-top: 10px;
+  padding: 5px 14px;
+  background-color: white;
+  border: 1px solid gray;
+}
+
+.login-first-div {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-second-div {
+  display: flex;
+  width: 50%;
+  background-color: white;
+}
+.login-second-div11 {
+  padding: 0;
+  width: 100%;
+}
+.login-second-div11 > input {
+  padding: 6px 10px;
+}
+.login-second-div input {
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+}
+.input-enter-otp {
+  width: 100%;
+}
+.input-enter-otp::placeholder {
+  text-align: center;
+}
+.or-para {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.login-third-div {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.link-forgot {
+  color: var(--primary);
+}
+.link-ff {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+}
+.login-third-div>button {
+  font-size: 10px;
+  border: 1px solid transparent;
+  width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+  height: 100%;
+  border-radius: 20px;
+  background-color: var(--primary);
+  cursor: pointer;
+  color: #ffff;
+  font-weight: 600;
+}
+.blink {
+  width: 2px; /* Adjust width as needed */
+  height: 27px; /* Adjust height as needed */
+  background-color: black; /* Adjust color as needed */
+  animation: blink 1s infinite;
+  margin-right: 15px;
+  margin-left: -15px;
+}
+@media (max-width: 768px) {
+  .blink {
+    margin-left: 10px;
+  }
+}
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1; /* Line is visible */
+  }
+  50%,
+  100% {
+    opacity: 0; /* Line is hidden */
+  }
+}
+.overlay1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.regis-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+/* Popup container - ensure it stays centered */
+.register-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 500px;
+  background-color: white;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  padding: 20px;
+  z-index: 1005;
+  opacity: 0;
+  animation: slideDown 0.5s forwards;
+  overflow: hidden;
+}
+
+/* Animation for the popup */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Input fields and button styling */
+.regis-input {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  margin-top: 15px;
+}
+
+.regis-input input {
+  border: 1px solid gray;
+  outline: none;
+  width: 90%;
+  border-radius: 16px;
+  margin: auto;
+  padding: 10px 14px;
+}
+
+.regis-input1 {
+  display: flex;
+  column-gap: 13px;
+  margin-top: 30px;
+}
+
+.regi-inpu {
+  background-color: rgb(139, 49, 49);
+}
+
+.regis-input input::placeholder {
+  color: rgb(108, 108, 108);
+}
+
+/* Register Button */
+.reg-btn1 {
+  margin-top: 15px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  width: 100%;
+  background-color: #d9efe2;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.reg-btn1:hover {
+  background-color: var(--primary);
+  color: #ffff;
+}
+
+/* Footer links */
+.las-footer33 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.las-footer33 > div {
+  display: flex;
+  column-gap: 13px;
+}
+
+.las-btn-44 {
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #00913A;
+  padding: 4px 30px;
+  font-weight: bold;
+}
+
+.register-link {
+  text-decoration: none;
+  color: black;
+}
+
+.register-link > div {
+  display: flex;
+  column-gap: 13px;
+}
+.regis-form-11 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .register-container {
+    width: 87%; /* Allow modal to take more space on mobile */
+    max-width: 90%;
+    padding: 15px; /* Adjust padding for better spacing */
+    border-radius: 15px; /* Make modal edges more rounded */
+  }
+
+  .reg-btn1 {
+    font-size: 18px; /* Slightly smaller button text on mobile */
+    padding: 12px; /* Adjust padding for better fit */
+  }
+
+  .regis-input input {
+    width: 82%;
+    padding: 12px 14px; /* Adjust input field padding for mobile */
+  }
+
+  .las-footer33 {
+    flex-direction: column; /* Stack footer elements vertically */
+    align-items: center;
+    gap: 10px;
+  }
+
+  .las-footer33 > div {
+    align-items: center; /* Align footer content vertically */
+    gap: 8px;
+  }
+  .login-first-div {
+    width: 50%;
+  }
+  .login-second-div {
+    width: 100%;
+  }
+
+  .login-second-div {
+    width: 70%;
+  }
+  .las-btn-44 {
+    padding: 8px 25px; /* Adjust padding for better button fit on mobile */
+  }
+}

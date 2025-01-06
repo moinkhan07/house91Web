@@ -1,0 +1,282 @@
+.search-dropdown-main {
+  position: relative;
+  cursor: pointer;
+}
+
+.search-dropdown-1 {
+  min-width: 140px;
+  border: 1px solid black;
+  border-radius: 10px;
+  position: absolute;
+  top: 60px;
+  left: -85px;
+}
+.search-li-1 {
+  text-decoration: none;
+  list-style: none;
+  width: fit-content;
+  padding-bottom: 5px;
+}
+.search-li-1 > li {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.search-li-1 > li:hover {
+  color: var(--primary);
+}
+.sticky-filter-1 {
+  position: sticky;
+  top: 4rem;
+  background-color: #ffff;
+  padding: 1rem;
+  z-index: 999;
+}
+
+.home-container {
+  margin-top: 100px;
+}
+.product-append-111 {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  gap: 10px 5px;
+}
+
+/* ====== */
+
+/* Keyframes for fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base styles for hidden elements */
+.sticky-filter-1,
+.product-append-111 > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.2s ease-in-out forwards;
+  will-change: opacity, transform;
+}
+
+/* Trigger the animation on scroll */
+.sticky-filter-1 {
+  position: sticky;
+  top: 4.5rem;
+  background-color: #fff;
+  padding: 1rem 4rem;
+  z-index: 999;
+  animation-delay: 0.2s;
+}
+
+/* Apply animation to children of product-append-111 */
+.product-append-111 > *:nth-child(1) {
+  animation-delay: 0.2s; /* Delay for first child */
+}
+
+.product-append-111 > *:nth-child(2) {
+  animation-delay: 0.3s; /* Delay for second child */
+}
+
+.product-append-111 > *:nth-child(3) {
+  animation-delay: 0.4s; /* Delay for third child */
+}
+
+/* Responsive container for products */
+.product-append-111 {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  gap: 10px 5px;
+}
+
+/* ====== */
+.h-second-icon-1 {
+  font-size: 45px;
+  margin-left: 20px;
+}
+.h-second-nav > div {
+  margin-left: 30px;
+}
+.h-second-icon- {
+  font-size: 35px;
+  margin-left: 20px;
+}
+.product-details-content-ss {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-details-content-ss1 {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+.main-product-ima {
+  width: 100%;
+  cursor: pointer;
+}
+.main-product-ima > img {
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+.main-product-ima > img:hover {
+  transform: scale(1.03);
+}
+.bookmark-checkbox-1 {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.bookmark-checkbox-1 > input[type="checkbox"] {
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: transparent;
+  border: 2px solid #ffff;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative; /* Required for positioning the tick mark */
+  display: inline-block;
+  margin: 0;
+}
+
+.bookmark-checkbox-1 > input[type="checkbox"]:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.bookmark-checkbox-1 > input[type="checkbox"]:checked::after {
+  content: "✓"; /* Tick mark character */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem; /* Adjust size as needed */
+  color: white; /* Color of the tick mark */
+}
+.first-div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  /* align-items: flex-start; */
+}
+
+.first-div-right {
+  min-height: 100%;
+}
+
+.product-details-div {
+  border: 1px solid gray;
+  padding: 7px;
+  border-radius: 20px;
+}
+.product-details-div:hover {
+  border: 1px solid var(--primary);
+}
+.product-details-content-ss11 {
+  display: flex;
+  gap: 12px;
+}
+
+.show-bottom-button {
+  width: 15%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+.show-bottom-button > button {
+  font-size: 20px;
+  background-color: #ffff;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: 2px solid var(--primary);
+  cursor: pointer;
+}
+
+.appointmentVisitedContainer {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.appointmentVisitedContainer > p {
+  font-weight: 550;
+}
+
+.appointmentVisitedContainer > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.appointmentVisitedContainer > div > button {
+  width: 48%;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border: 2px solid var(--primary);
+  border-radius: 15px;
+  background-color: #fff;
+  font-weight: 550;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.appointmentVisitedContainer > div > button:hover {
+  color: #fff;
+  background-color: var(--primary);
+}
+.noLongerAvailable {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background-color: rgba(128, 128, 128, 0.7);
+  background-color: #dfdfdfc9;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+.noLongerAvailable > p {
+  padding-top: 80px;
+  font-size: 26px;
+  font-weight: bold;
+  width: 80%;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .product-append-111 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .show-bottom-button {
+    width: 50%;
+  }
+  .sticky-filter-1 {
+    top: 5rem;
+  }
+}

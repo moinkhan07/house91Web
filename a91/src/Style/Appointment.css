@@ -1,0 +1,42 @@
+.date-icon-div {
+  display: flex;
+  gap: 9px;
+}
+.date-icon-div > div {
+  width: 6%;
+}
+
+.date-icon-div > div > img {
+  width: 100%;
+  object-fit: contain;
+}
+.two-btn-div > button {
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+.two-btn-div > button:hover {
+  background-color: var(--primary);
+  color: #ffff;
+}
+.two-btn-div1 {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.two-btn-div1 > button {
+  width: 90%;
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+.two-btn-div1 > button:hover {
+  background-color: var(--primary);
+  color: #ffff;
+}

@@ -1,0 +1,182 @@
+.select-search-div {
+  width: 30%;
+  height: 40px;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--primary);
+  border-radius: 25px;
+  margin-top: 50px;
+}
+
+.select-search-div > input {
+  flex: 1;
+  max-height: 100%;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+}
+
+.select-search-image {
+  width: 12%;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.agent-p11 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.select-agent-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+.select-agent-content-div {
+  width: fit-content;
+  border: 1.5px solid gray;
+  border-radius: 15px;
+  padding: 15px 5px 15px 25px;
+  display: flex;
+  gap: 20px;
+}
+.circle-checkbox {
+  width: 20px; /* Adjust size as needed */
+  height: 20px; /* Same as width for a perfect circle */
+  border-radius: 50%; /* Makes the checkbox circular */
+  border: 2px solid var(--primary);
+  appearance: none; /* Removes default checkbox styles */
+  outline: none;
+  cursor: pointer;
+}
+
+.circle-checkbox:checked {
+  background-color: var(--primary); /* Color when checked */
+  border-color: var(--primary);
+}
+
+.circle-checkbox:focus {
+  box-shadow: 0 0 3px var(--primary); /* Optional: Focus indicator */
+}
+
+.agent-show-bottom-button {
+  width: 30%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+.agent-show-bottom-button > button:hover {
+  color: #ffff;
+  background-color: var(--primary);
+}
+.agent-show-bottom-button > button {
+  width: 100%;
+  font-size: 20px;
+  background-color: #ffff;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: 1px solid var(--primary);
+  cursor: pointer;
+}
+
+/* =============Modal */
+.modal_agent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.modal-content_agent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+  width: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content_agent h2 {
+  margin-bottom: 20px;
+  font-weight: 550;
+  font-size: 22px;
+  text-align: left;
+}
+.modal-content_agent h3 {
+  margin-bottom: 10px;
+  font-weight: 550;
+  font-size: 17px;
+  text-align: left;
+}
+
+.modal-content_agent ul {
+  margin-bottom: 20px;
+  padding-left: 50px;
+}
+.modal-content_agent ul > li {
+  font-weight: 550;
+  margin-bottom: 5px;
+}
+
+.acceptBtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.modal-content_agent button {
+  border: 1px solid var(--primary);
+  background-color: #fff;
+  padding: 14px 50px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 550;
+}
+
+.modal-content_agent button:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* =============Modal */
+
+@media (max-width: 768px) {
+  .select-search-div {
+    width: 100%;
+  }
+  .select-agent-content-div {
+    width: 96%;
+    border: 1.5px solid gray;
+    border-radius: 20px;
+    padding: 12px 5px 9px 10px;
+    display: flex;
+    gap: 9px;
+  }
+  .select-agent-content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .agent-show-bottom-button {
+    width: 95%;
+  }
+  .agent-show-bottom-button > button {
+    font-size: 18px;
+  }
+}

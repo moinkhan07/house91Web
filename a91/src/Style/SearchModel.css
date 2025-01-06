@@ -1,0 +1,204 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  width: 50%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.row {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.row-first {
+  border-radius: 15px;
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 5px 0px;
+}
+.row-1,
+.row-2 {
+  width: 48%;
+}
+.row-first > div > p {
+  text-align: center;
+}
+.vertical-line-21 {
+  width: 2px;
+  min-height: 30px;
+  background-color: black;
+}
+.row-second {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.budget-rupee-icon > p {
+  font-size: 30px;
+  margin-right: 10px;
+}
+.budget-div-2 {
+  width: 94%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.budget-div-1 {
+  width: 48%;
+  display: flex;
+  align-items: center;
+}
+.div-min-max-1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-min-1 {
+  border-radius: 15px;
+  padding: 2px 18px;
+  font-size: 14px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.search-pid-number {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-pid-number > label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.search-pid-number > input {
+  margin-left: 20px;
+  width: 60%;
+  outline: none;
+  padding-left: 10px;
+  border: none;
+  border-bottom: 1px solid var(--primary);
+}
+.search-pid-number > input::placeholder {
+  font-size: 15px;
+  color: black;
+}
+span {
+  margin: 0 5px;
+}
+
+.buttons {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.publish-btn,
+.search-btn {
+  border: 2px solid var(--primary);
+  width: 250px;
+  padding: 15px;
+  border-radius: 45px;
+  cursor: pointer;
+  font-weight: 600;
+  background-color: #fff;
+}
+
+.publish-btn:hover,
+.search-btn:hover {
+  color: #ffff;
+  background-color: var(--primary);
+}
+
+/* ====== */
+.dropdown-options {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  margin-top: 5px;
+  width: 200px;
+  z-index: 999;
+}
+
+.dropdown-options p {
+  padding: 7px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.dropdown-options p:hover {
+  background-color: #f0f0f0;
+}
+
+/* Other styles */
+.search-form .row-first p,
+.search-form .row-second label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.input-text {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.input-text::placeholder {
+  color: #999;
+  font-size: 14px;
+}
+
+.search-pid-number {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
