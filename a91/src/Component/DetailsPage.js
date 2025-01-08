@@ -12,6 +12,7 @@ import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import { TbHomeFilled } from "react-icons/tb";
 import { GiSettingsKnobs } from "react-icons/gi";
 import repor from "../Asset/Navbar/repor.png";
+import { MdCurrencyRupee } from "react-icons/md";
 
 const DetailPage = () => {
   const isMobile = window.innerWidth <= 768;
@@ -71,19 +72,21 @@ const DetailPage = () => {
               <p>Filter</p>
             </div>
             <div className="divide-line-11"></div>
-            <div className="budget-div">
-              <div>
-                <p>₹ Budget</p>
+            <div
+              className="budget-div-1"
+              style={{ width: "25%", paddingTop: 10 }}
+            >
+              <div className="budget-rupee-icon">
+                <MdCurrencyRupee size={24} style={{ marginRight: "10px" }} />
               </div>
-              <div className="div-min-max">
-                <div className="nav-min">
-                  <input placeholder="Min" />
+              <div className="budget-div-2">
+                <div className="div-min-max-1">
+                  <input type="text" className="input-text" placeholder="Min" />
+                  <p style={{ fontSize: "14px", margin: "0 10px" }}>To</p>
+                  <input type="text" className="input-text" placeholder="Max" />
                 </div>
-
-                <p>To</p>
-
-                <div className="nav-min">
-                  <input placeholder="Max" />
+                <div>
+                  <p style={{ fontSize: "13px" }}>Budget</p>
                 </div>
               </div>
             </div>

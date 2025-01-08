@@ -53,8 +53,8 @@
 }
 .divide-line-11 {
   width: 2px;
-  height: 70%;
-  background-color: var(--primary);
+  height: 90%;
+  background-color: #000;
   margin: 0px 20px;
 }
 #like-dis-div {
@@ -382,6 +382,7 @@
     margin-right: 15px;
     margin-left: 15px;
     margin-top: 4px;
+    background-color: black;
   }
 
   .budget-div {

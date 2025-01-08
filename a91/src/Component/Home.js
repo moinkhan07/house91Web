@@ -53,6 +53,10 @@ const Home = () => {
   const [selectedPurpose, setSelectedPurpose] = useState("Purpose");
   const [activeDropdown, setActiveDropdown] = useState(null);
 
+  const [selectedCityBanner, setSelectedCityBanner] = useState(null);
+  const [selectedOwnOrRent, setSelectedOwnOrRent] = useState(null);
+  const [selectedPurposeBanner, setSelectedPurposeBanner] = useState(null);
+
   const isMobile = window.innerWidth <= 768;
   const [opacity, setOpacity] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -199,6 +203,12 @@ const Home = () => {
     }
   };
 
+  const handleCitySelection = (city) => {
+    setSelectedCityBanner(city);
+    setShowCityDropdownHeader(false);
+    setIsCityRotateHeader(false);
+  };
+
   const handleOwnDropdownHeader = () => {
     setShowOwnDropdownHeader(!showOwnDropdownHeader);
     setIsOwnRotateHeader(!isOwnRotateHeader);
@@ -213,6 +223,12 @@ const Home = () => {
     }
   };
 
+  const handleOwnOrRentSelection = (option) => {
+    setSelectedOwnOrRent(option);
+    setShowOwnDropdownHeader(false);
+    setIsOwnRotateHeader(false);
+  };
+
   const handlePurposeDropdownHeader = () => {
     setShowPurposeDropdownHeader(!showPurposeDropdownHeader);
     setIsPurRotateHeader(!isPurRotateHeader);
@@ -225,6 +241,13 @@ const Home = () => {
       setShowOwnDropdownHeader(false);
       setIsOwnRotateHeader(false);
     }
+  };
+
+  const handlePurposeSelection = (purpose, route) => {
+    setSelectedPurposeBanner(purpose);
+    setShowPurposeDropdownHeader(false); // Close the dropdown
+    setIsPurRotateHeader(false); // Rotate the arrow back
+    navigate(route);
   };
 
   const handleSearchDropdown = () => {
@@ -296,7 +319,7 @@ const Home = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(100);
 
-  const words = ["Address", "Agent"];
+  const words = ["Address", "Agents"];
 
   useEffect(() => {
     const handleTyping = () => {
@@ -380,6 +403,7 @@ const Home = () => {
                                 setSelectedCity(city);
                                 setShowCityDropdown(false);
                                 setIsCityRotate(false);
+                                setActiveDropdown(null);
                               }}
                             >
                               {city}
@@ -426,6 +450,7 @@ const Home = () => {
                                 setSelectedOwnRent(option);
                                 setShowOwnDropdown(false);
                                 setIsOwnRotate(false);
+                                setActiveDropdown(null);
                               }}
                             >
                               {option}
@@ -471,6 +496,7 @@ const Home = () => {
                               setShowPurposeDropdown(false);
                               setIsPurRotate(false);
                               navigate("/homedesign");
+                              setActiveDropdown(null);
                             }}
                           >
                             Residential
@@ -481,6 +507,7 @@ const Home = () => {
                               setShowPurposeDropdown(false);
                               setIsPurRotate(false);
                               navigate("/homedesignfirst");
+                              setActiveDropdown(null);
                             }}
                           >
                             Commercial
@@ -491,6 +518,7 @@ const Home = () => {
                               setShowPurposeDropdown(false);
                               setIsPurRotate(false);
                               navigate("/homedesignsecond");
+                              setActiveDropdown(null);
                             }}
                           >
                             Plot
@@ -580,13 +608,32 @@ const Home = () => {
                 {activeDropdown === "account" && (
                   // {isAccount && (
                   <div className="account-details1">
-                    <p className="account-option" onClick={handleLoginClick}>
+                    <p
+                      className="account-option"
+                      onClick={() => {
+                        handleLoginClick();
+                        setActiveDropdown(null);
+                      }}
+                    >
                       Login
                     </p>
-                    <p className="account-option" onClick={handleSignupForm}>
+
+                    <p
+                      className="account-option"
+                      onClick={() => {
+                        handleSignupForm();
+                        setActiveDropdown(null);
+                      }}
+                    >
                       Register as Individual
                     </p>
-                    <p className="account-option" onClick={goToDetailPage}>
+                    <p
+                      className="account-option"
+                      onClick={() => {
+                        goToDetailPage();
+                        setActiveDropdown(null);
+                      }}
+                    >
                       Register as Channel Partner
                     </p>
                   </div>
@@ -1024,8 +1071,18 @@ const Home = () => {
                     fontWeight: "600",
                   }}
                 >
-                  Which <span className="text-color-1">City</span> do you want
-                  to be in?
+                  {selectedCityBanner ? (
+                    <span
+                      style={{ color: "var(--primary)", fontWeight: "bold" }}
+                    >
+                      {selectedCityBanner}
+                    </span>
+                  ) : (
+                    <>
+                      Which <span className="text-color-1">City</span> do you
+                      want to be in?
+                    </>
+                  )}
                 </p>
                 <RiArrowDropDownLine
                   style={{
@@ -1063,12 +1120,18 @@ const Home = () => {
             {showCityDropdownHeader && (
               <div className="city-dropdown-13">
                 <div>
-                  <p>Mumbai</p>
-                  <p>Delhi</p>
-                  <p>Kolkata</p>
-                  <p>Bengaluru</p>
-                  <p>Chennai</p>
-                  <p>Hyderabad</p>
+                  {[
+                    "Mumbai",
+                    "Delhi",
+                    "Kolkata",
+                    "Bengaluru",
+                    "Chennai",
+                    "Hyderabad",
+                  ].map((city) => (
+                    <p key={city} onClick={() => handleCitySelection(city)}>
+                      {city}
+                    </p>
+                  ))}
                 </div>
               </div>
             )}
@@ -1081,8 +1144,16 @@ const Home = () => {
               onClick={handleOwnDropdownHeader}
             >
               <p style={{ fontSize: "18px", fontWeight: "600" }}>
-                Do you want to <span className="text-color-1">Own</span> or{" "}
-                <span className="text-color-1">Rent</span>?
+                {selectedOwnOrRent ? (
+                  <span style={{ color: "var(--primary)", fontWeight: "bold" }}>
+                    {selectedOwnOrRent}
+                  </span>
+                ) : (
+                  <>
+                    Do you want to <span className="text-color-1">Own</span> or{" "}
+                    <span className="text-color-1">Rent</span>?
+                  </>
+                )}
               </p>
               <RiArrowDropDownLine
                 style={{
@@ -1099,8 +1170,8 @@ const Home = () => {
             {showOwnDropdownHeader && (
               <div className="own-dropdown-13">
                 <div>
-                  <p>Own</p>
-                  <p>Rent</p>
+                  <p onClick={() => handleOwnOrRentSelection("Own")}>Own</p>
+                  <p onClick={() => handleOwnOrRentSelection("Rent")}>Rent</p>
                 </div>
               </div>
             )}
@@ -1113,7 +1184,15 @@ const Home = () => {
               onClick={handlePurposeDropdownHeader}
             >
               <p style={{ fontSize: "18px", fontWeight: "600" }}>
-                What is the <span className="text-color-1">Purpose</span>?
+                {selectedPurposeBanner ? (
+                  <span style={{ color: "var(--primary)", fontWeight: "bold" }}>
+                    {selectedPurposeBanner}
+                  </span>
+                ) : (
+                  <>
+                    What is the <span className="text-color-1">Purpose</span>?
+                  </>
+                )}
               </p>
               <RiArrowDropDownLine
                 style={{
@@ -1136,29 +1215,23 @@ const Home = () => {
             <div className="purpose-dropdown-13" style={{ width: "300px" }}>
               <div>
                 <p
-                  onClick={() => {
-                    setShowPurposeDropdown(false);
-                    setIsPurRotate(!isPurRotate);
-                    navigate("/homedesign");
-                  }}
+                  onClick={() =>
+                    handlePurposeSelection("Residential", "/homedesign")
+                  }
                 >
                   Residential
                 </p>
                 <p
-                  onClick={() => {
-                    setShowPurposeDropdown(false);
-                    setIsPurRotate(!isPurRotate);
-                    navigate("/homedesignfirst");
-                  }}
+                  onClick={() =>
+                    handlePurposeSelection("Commercial", "/homedesignfirst")
+                  }
                 >
                   Commercial
                 </p>
                 <p
-                  onClick={() => {
-                    setShowPurposeDropdown(false);
-                    setIsPurRotate(!isPurRotate);
-                    navigate("/homedesignsecond");
-                  }}
+                  onClick={() =>
+                    handlePurposeSelection("Plot", "/homedesignsecond")
+                  }
                 >
                   Plot
                 </p>
