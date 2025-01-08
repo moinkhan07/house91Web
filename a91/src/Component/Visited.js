@@ -4,15 +4,8 @@ import "../Style/Appointment.css";
 import ApartmentCard from "./ApartmentCard";
 import h2 from "../Asset/Home/h1.png";
 
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { MobileTimePicker } from "@mui/x-date-pickers/MobileTimePicker";
-import TextField from "@mui/material/TextField";
-
 const Visited = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const [reportingProperty, setReportingProperty] = useState(null);
 
   const handleReportClick = (property) => {
@@ -81,35 +74,6 @@ const Visited = () => {
       <div className="yet-first-sec">
         <input type="checkbox" className="bookmark-checkbox-2" />
         <p>Select All</p>
-      </div>
-      <div style={{ textAlign: "center", marginBottom: "70px" }}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-            }}
-          >
-            <div style={{ marginRight: "10px" }}>
-              <DatePicker
-                label="Select Date"
-                value={selectedDate}
-                onChange={(newValue) => setSelectedDate(newValue)}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </div>
-            <div>
-              <MobileTimePicker
-                label="Select Time"
-                value={selectedDate}
-                onChange={(newValue) => setSelectedDate(newValue)}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </div>
-          </div>
-        </LocalizationProvider>
       </div>
       <div
         className="product-append-111"

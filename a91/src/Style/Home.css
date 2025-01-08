@@ -5,26 +5,29 @@
 
 .search-dropdown-1 {
   min-width: 140px;
-  border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: absolute;
+  padding: 5px;
   top: 60px;
   left: -85px;
 }
 .search-li-1 {
   text-decoration: none;
   list-style: none;
-  width: fit-content;
-  padding-bottom: 5px;
 }
 .search-li-1 > li {
   display: flex;
   align-items: center;
-  padding: 5px 10px;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 7px;
 }
 .search-li-1 > li:hover {
-  color: var(--primary);
+  background-color: #f0f0f0;
+  border-radius: 15px;
 }
 .sticky-filter-1 {
   position: sticky;
@@ -32,6 +35,41 @@
   background-color: #ffff;
   padding: 1rem;
   z-index: 999;
+}
+.searchIconInPurpose {
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px;
+  border-radius: 50px;
+  position: absolute;
+  right: -1px;
+  cursor: pointer;
+}
+
+.homeDropdownContainer {
+  min-width: 160px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  padding: 5px;
+  top: 60px;
+  left: -60px;
+}
+
+.homeDropdownContainerOption {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 7px;
+}
+
+.homeDropdownContainerOption:hover {
+  background-color: #f0f0f0;
+  border-radius: 15px;
 }
 
 .home-container {
@@ -113,8 +151,9 @@
   font-size: 45px;
   margin-left: 20px;
 }
+
 .h-second-nav > div {
-  margin-left: 30px;
+  margin-left: 40px;
 }
 .h-second-icon- {
   font-size: 35px;

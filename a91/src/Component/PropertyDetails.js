@@ -87,7 +87,7 @@ const PropertyDetails = () => {
           <input placeholder="Nick Name*" className="pro-input" />
         </div>
         <div className="pro-3">
-          <div className="pro-1">
+          <div className="pro-1" style={{ flex: 1 }}>
             <input placeholder="Land Size" className="pro-input" />
           </div>
           <div className="pro-2" style={{ width: "20%" }}>
@@ -96,7 +96,7 @@ const PropertyDetails = () => {
           </div>
         </div>
         <div className="pro-3">
-          <div className="pro-1">
+          <div className="pro-1" style={{ flex: 1 }}>
             <input
               placeholder="Builtup Size/Carpet Area*"
               className="pro-input"

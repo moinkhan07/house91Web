@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "../Style/SelectAgent.css";
 import { IoIosSearch } from "react-icons/io";
 import primg from "../Asset/Home/primg.png";
+import { FcManager } from "react-icons/fc";
 
 const SelectAgent = () => {
   const agents = [
     {
+      id: 1,
       imageUrl: primg,
       name: "Shrestha Agarwal",
       consultationRent: "One month rent",
@@ -14,24 +16,27 @@ const SelectAgent = () => {
       noOfProperties: "999",
     },
     {
+      id: 2,
       imageUrl: primg,
-      name: "Shrestha Agarwal",
+      name: "Rammu Sharma",
       consultationRent: "One month rent",
       consultationSale: "1% of sale value",
       operatingSince: "2019",
       noOfProperties: "999",
     },
     {
+      id: 3,
       imageUrl: primg,
-      name: "Shrestha Agarwal",
+      name: "Tom & Jerry",
       consultationRent: "One month rent",
       consultationSale: "1% of sale value",
       operatingSince: "2019",
       noOfProperties: "999",
     },
     {
+      id: 4,
       imageUrl: primg,
-      name: "Shrestha Agarwal",
+      name: "Vikas Singh",
       consultationRent: "One month rent",
       consultationSale: "1% of sale value",
       operatingSince: "2019",
@@ -39,15 +44,15 @@ const SelectAgent = () => {
     },
   ];
 
+  const [selectedAgent, setSelectedAgent] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
 
-  const handleCheckboxChange = (e) => {
-    setIsChecked(e.target.checked);
+  const handleCheckboxChange = (agentId) => {
+    setSelectedAgent(agentId);
   };
 
   const handleSelectAgentClick = () => {
-    if (isChecked) {
+    if (selectedAgent) {
       setIsModalVisible(true);
     } else {
       alert("Please select an agent before proceeding.");
@@ -68,12 +73,17 @@ const SelectAgent = () => {
       </div>
 
       <div className="select-agent-content">
-        {agents.map((agent, index) => (
-          <div className="select-agent-content-div" key={index}>
-            <div>
-              <img src={agent.imageUrl} alt="Agent" />
+        {agents.map((agent) => (
+          <div className="select-agent-content-div" key={agent.id}>
+            <div className="select-agent-content-div_First">
+              <FcManager
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
             </div>
-            <div>
+            <div className="select-agent-content-div_Second">
               <p
                 style={{
                   color: "var(--primary)",
@@ -84,28 +94,38 @@ const SelectAgent = () => {
               >
                 {agent.name}
               </p>
-              <div>
-                <p className="agent-p11">
-                  Consultation(Rent) &nbsp; {`:${agent.consultationRent}`}
-                </p>
-                <p className="agent-p11">
-                  Consultation(Sale) &nbsp;&nbsp; {`:${agent.consultationSale}`}
-                </p>
-                <p className="agent-p11">
-                  Operating Since &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                  {`:${agent.operatingSince}`}
-                </p>
-                <p className="agent-p11">
-                  No. Of Properties &nbsp;&nbsp;&nbsp;&nbsp;
-                  {`:${agent.noOfProperties}`}
-                </p>
+              <div className="agent-info">
+                <div className="agent-row">
+                  <p className="agent-key">Consultation(Rent):</p>
+                  <p className="agent-value">{agent.consultationRent}</p>
+                </div>
+                <div className="agent-row">
+                  <p className="agent-key">Consultation(Sale):</p>
+                  <p className="agent-value">{agent.consultationSale}</p>
+                </div>
+                <div className="agent-row">
+                  <p className="agent-key">Operating Since:</p>
+                  <p className="agent-value">{agent.operatingSince}</p>
+                </div>
+                <div className="agent-row">
+                  <p className="agent-key">No. Of Properties:</p>
+                  <p className="agent-value">{agent.noOfProperties}</p>
+                </div>
               </div>
             </div>
-            <div>
+            <div className="select-agent-content-div_Third">
               <input
                 type="checkbox"
-                className="circle-checkbox"
-                onChange={handleCheckboxChange}
+                className="circle-checkbox_2"
+                checked={selectedAgent === agent.id}
+                onChange={() => handleCheckboxChange(agent.id)}
+                style={{
+                  marginLeft: "auto",
+                  display: "flex",
+                  width: "18px",
+                  height: "18px",
+                  borderRadius: "50%",
+                }}
               />
             </div>
           </div>
@@ -127,8 +147,10 @@ const SelectAgent = () => {
           <div className="modal-content_agent">
             <h2>
               You are choosing{" "}
-              <span style={{ color: "var(--primary)" }}>Rammu</span> to be your
-              representative:
+              <span style={{ color: "var(--primary)" }}>
+                {agents.find((agent) => agent.id === selectedAgent)?.name}
+              </span>{" "}
+              to be your representative:
             </h2>
             <h3>By selecting an Exclusive Agent:</h3>
             <ul>

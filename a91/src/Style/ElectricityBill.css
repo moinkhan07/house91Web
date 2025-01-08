@@ -1,5 +1,5 @@
 .electricity-main-container {
-  width: 73%;
+  width: 72%;
   margin: auto;
   margin-top: 20px;
 }
@@ -11,71 +11,109 @@
 
 .elect-main-content {
   width: 100%;
-  border: 1px solid gray;
+  border: 2px solid lightgray;
   border-radius: 40px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: 20px;
 }
 .elect-main-content-1 {
-  width: 54%;
+  width: 30%;
   display: flex;
   justify-content: space-between;
-  margin: auto;
-  margin-left: 31px;
-}
-.elect-main-content-1-p1{
-    width: 55%;
-    border-right: 2px solid black;
-    font-weight: 600;
-}
-.elect-main-content-1-p2{
-    width: 5%;
-    font-weight: 600;
-}
-.elect-main-content-2 {
-  width: 5%;
-  border: 1px solid black;
-  border-radius: 50%;
-  background-color: black;
-  color: white;
-  padding: 4px 4px;
+  align-items: center;
   text-align: center;
+  position: relative;
   cursor: pointer;
 }
-.elect-main-content-details{
-    border: 1px solid gray;
-    margin: auto;
-    width: 90%;
-    padding: 20px;
-    margin-top: 10px;
-    border-radius: 20px;
+
+.elect-main-content-2 {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }
-.elect-main-content-details>p{
-    font-weight: 600;
+.elect-main-content-1-p1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-weight: 600;
+  padding: 12px 0;
+}
+.elect-main-content-1-p2 {
+  width: 100%;
+  font-weight: 600;
+  text-align: center;
+}
+.elect-main-content-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background-color: var(--primary);
+  padding: 7px;
+  cursor: pointer;
+}
+.elect-main-content-details {
+  border: 2px solid lightgray;
+  margin: auto;
+  width: 90%;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+.elect-main-content-details > p {
+  font-weight: 600;
 }
 
-.bot-content-link{
-    border: 1px solid gray;
-    border-radius: 30px;
-    text-align: center;
-    width: 40%;
-    margin: auto;
-    margin-top: 125px;
-    margin-bottom: 125px;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: 550;
-    cursor: pointer;
+.bot-content-link {
+  border: 2px solid lightgray;
+  border-radius: 30px;
+  text-align: center;
+  width: 40%;
+  margin: auto;
+  margin-top: 125px;
+  margin-bottom: 125px;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 550;
+  cursor: pointer;
 }
 
-.bot-content-link:hover{
-    background-color: var(--primary);
-    color: #ffff;
+.bot-content-link:hover {
+  background-color: var(--primary);
+  color: #ffff;
 }
 
+.bescom-dropdown {
+  width: 90%;
+  position: absolute;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  top: 100%;
+  left: 5%;
+}
 
-@media (max-width:768px){
+.bescom-dropdown > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 7px;
+}
+.bescom-dropdown > p:hover {
+  background-color: #f0f0f0;
+  border-radius: 15px;
+}
+
+@media (max-width: 768px) {
   .electricity-main-container {
     width: 90%;
   }
@@ -91,5 +129,5 @@
   .bot-content-link {
     width: 90%;
     font-size: 15px;
-}
+  }
 }

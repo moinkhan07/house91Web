@@ -7,7 +7,7 @@ import PropertyDetails from "./PropertyDetails";
 
 const AddProperty = () => {
   const isMobile = window.innerWidth <= 768;
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("Electricity Bill");
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -15,7 +15,6 @@ const AddProperty = () => {
 
   return (
     <div className="add-property-main-container">
-      {/* Navigation Bar */}
       <div className="options-container">
         <div
           key={"Electricity Bill"}
@@ -30,6 +29,7 @@ const AddProperty = () => {
         >
           Electricity Bill
         </div>
+
         <div
           key={"Property Details"}
           className={`option ${

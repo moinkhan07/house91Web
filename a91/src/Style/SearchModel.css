@@ -43,7 +43,7 @@
   align-items: center;
 }
 .row-first {
-  border-radius: 15px;
+  border-radius: 50px;
   width: 60%;
   margin: auto;
   display: flex;
@@ -158,8 +158,9 @@ span {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   margin-top: 5px;
-  width: 200px;
+  width: 180px;
   z-index: 999;
+  margin-left: 10px;
 }
 
 .dropdown-options p {
@@ -170,19 +171,19 @@ span {
 
 .dropdown-options p:hover {
   background-color: #f0f0f0;
+  border-radius: 15px;
 }
 
 /* Other styles */
 .search-form .row-first p,
 .search-form .row-second label {
   font-weight: 600;
-  margin-bottom: 5px;
   cursor: pointer;
 }
 
 .input-text {
   padding: 5px 10px;
-  border-radius: 10px;
+  border-radius: 50px;
   border: 1px solid #ccc;
   font-size: 16px;
   width: 100%;

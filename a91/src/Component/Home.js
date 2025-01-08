@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../Style/Hfirst.css";
-import { IoSearch } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import account from "../Asset/Navbar/account.png";
-import logo from "../Asset/Navbar/logo.png";
+import logo from "../Asset/Navbar//a91.png";
 import search from "../Asset/Navbar/search.png";
 import h1 from "../Asset/Navbar/h1.png";
 import { Link } from "react-router-dom";
+import { MdCurrencyRupee } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { RiCloseLargeFill } from "react-icons/ri";
 import filt from "../Asset/Navbar/filter.png";
@@ -29,7 +29,6 @@ import FilterModal from "./FilterModal";
 const Home = () => {
   const navigate = useNavigate();
   const [isAccount, setAccount] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
   const [showSignupComponent, setShowSignupComponent] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showPurposeDropdown, setShowPurposeDropdown] = useState(false);
@@ -49,11 +48,31 @@ const Home = () => {
   const [showOptionsInNavbar, setShowOptionsInNavbar] = useState(false);
   const [searchDropdown, setSearchDropdown] = useState(false);
 
+  const [selectedCity, setSelectedCity] = useState("City");
+  const [selectedOwnRent, setSelectedOwnRent] = useState("Own/Rent");
+  const [selectedPurpose, setSelectedPurpose] = useState("Purpose");
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
   const isMobile = window.innerWidth <= 768;
   const [opacity, setOpacity] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [imageHeight, setImageHeight] = useState(200);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+
+  const [homeDropdownOpen, setHomeDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setHomeDropdownOpen(!homeDropdownOpen);
+    if (searchDropdown || isAccount) {
+      setSearchDropdown(false);
+      setAccount(false);
+    }
+  };
+
+  const handleOptionClick = (path) => {
+    navigate(path);
+    setHomeDropdownOpen(false);
+  };
 
   const toggleFilterModal = () => {
     setIsFilterModalOpen(!isFilterModalOpen);
@@ -71,19 +90,26 @@ const Home = () => {
     const handleScrolls = () => {
       const scrollY = window.scrollY;
       const maxScroll = 200; // Total scroll range
-      const offset = maxScroll * 0.9; // 50% of the scroll
+      const offset = maxScroll * 0.9; // 90% of the scroll range
 
       let newOpacity = 1;
+      let newHeight = 200; // Full height of the image
 
       if (scrollY > offset) {
-        // Start hiding after 50% of the scroll
+        // Start reducing opacity and height after 90% of the scroll range
         newOpacity = Math.max(1 - (scrollY - offset) / (maxScroll - offset), 0);
+        newHeight = Math.max(200 * newOpacity, 0); // Reduce height proportionally
       }
 
       setOpacity(newOpacity);
+      setImageHeight(newHeight);
     };
 
     window.addEventListener("scroll", handleScrolls);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrolls);
+    };
   }, []);
 
   useEffect(() => {
@@ -118,12 +144,12 @@ const Home = () => {
     setIsCityRotate(!isCityRotate);
   };
 
-  const handleCityDropdownHeader = () => {
-    setShowCityDropdownHeader(!showCityDropdownHeader);
-    setIsCityRotateHeader(!isCityRotateHeader);
-  };
   const handleAccountOption = () => {
     setAccount(!isAccount);
+    if (searchDropdown || homeDropdownOpen) {
+      setSearchDropdown(false);
+      setHomeDropdownOpen(false);
+    }
   };
   const handleLoginClick = () => {
     setShowLogin(!showLogin);
@@ -153,29 +179,67 @@ const Home = () => {
     setShowPurposeDropdown(!showPurposeDropdown);
     setIsPurRotate(!isPurRotate);
   };
-  const handlePurposeDropdownHeader = () => {
-    setShowPurposeDropdownHeader(!showPurposeDropdownHeader);
-    setIsPurRotateHeader(!isPurRotateHeader);
-  };
+
   const handleOwnDropdown = () => {
     setShowOwnDropdown(!showOwnDropdown);
     setIsOwnRotate(!isOwnRotate);
   };
+
+  const handleCityDropdownHeader = () => {
+    setShowCityDropdownHeader(!showCityDropdownHeader);
+    setIsCityRotateHeader(!isCityRotateHeader);
+
+    if (showOwnDropdownHeader) {
+      setShowOwnDropdownHeader(false);
+      setIsOwnRotateHeader(false);
+    }
+    if (showPurposeDropdownHeader) {
+      setShowPurposeDropdownHeader(false);
+      setIsPurRotateHeader(false);
+    }
+  };
+
   const handleOwnDropdownHeader = () => {
     setShowOwnDropdownHeader(!showOwnDropdownHeader);
     setIsOwnRotateHeader(!isOwnRotateHeader);
+
+    if (showCityDropdownHeader) {
+      setShowCityDropdownHeader(false);
+      setIsCityRotateHeader(false);
+    }
+    if (showPurposeDropdownHeader) {
+      setShowPurposeDropdownHeader(false);
+      setIsPurRotateHeader(false);
+    }
   };
+
+  const handlePurposeDropdownHeader = () => {
+    setShowPurposeDropdownHeader(!showPurposeDropdownHeader);
+    setIsPurRotateHeader(!isPurRotateHeader);
+
+    if (showCityDropdownHeader) {
+      setShowCityDropdownHeader(false);
+      setIsCityRotateHeader(false);
+    }
+    if (showOwnDropdownHeader) {
+      setShowOwnDropdownHeader(false);
+      setIsOwnRotateHeader(false);
+    }
+  };
+
   const handleSearchDropdown = () => {
     setSearchDropdown(!searchDropdown);
+    if (homeDropdownOpen || isAccount) {
+      setHomeDropdownOpen(false);
+      setAccount(false);
+    }
   };
+
   const goToDetailPage = () => {
     setAccount(false);
     navigate("/detailpage");
   };
-  const goToPropertyPage = () => {
-    setAccount(false);
-    navigate("/property");
-  };
+
   const products = [];
   for (let r = 0; r < 6; r++) {
     products.push({
@@ -190,6 +254,76 @@ const Home = () => {
       isAvailable: true,
     });
   }
+
+  const countryCodes = [
+    { code: "+91", label: "India" },
+    { code: "+1", label: "USA" },
+    { code: "+2", label: "Canada" },
+    { code: "+3", label: "Mexico" },
+    { code: "+4", label: "Brazil" },
+    { code: "+5", label: "Argentina" },
+    { code: "+6", label: "Colombia" },
+    { code: "+7", label: "Peru" },
+    { code: "+8", label: "Venezuela" },
+    { code: "+9", label: "Chile" },
+    { code: "+10", label: "Ecuador" },
+    { code: "+11", label: "Guatemala" },
+    { code: "+12", label: "Cuba" },
+    { code: "+13", label: "Haiti" },
+    { code: "+14", label: "Dominican Republic" },
+    { code: "+15", label: "Honduras" },
+    { code: "+16", label: "Paraguay" },
+    { code: "+17", label: "El Salvador" },
+    { code: "+18", label: "Nicaragua" },
+    { code: "+19", label: "Costa Rica" },
+    { code: "+20", label: "Panama" },
+    { code: "+21", label: "Jamaica" },
+    { code: "+22", label: "Trinidad and Tobago" },
+    { code: "+23", label: "Bahamas" },
+    { code: "+24", label: "Barbados" },
+    { code: "+25", label: "Saint Lucia" },
+    { code: "+26", label: "Saint Vincent and the Grenadines" },
+  ];
+
+  const handleDropdownToggle = (dropdownName) => {
+    setActiveDropdown((prev) => (prev === dropdownName ? null : dropdownName));
+  };
+
+  const isDefaultValue = (value, defaultValue) => value === defaultValue;
+
+  const [showText, setShowText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(100);
+
+  const words = ["Address", "Agent"];
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentWord = words[loopNum % words.length];
+      const updatedText = isDeleting
+        ? currentWord.substring(0, showText.length - 1)
+        : currentWord.substring(0, showText.length + 1);
+
+      setShowText(updatedText);
+
+      if (!isDeleting && updatedText === currentWord) {
+        setTypingSpeed(3000);
+        setIsDeleting(true);
+      } else if (isDeleting && updatedText === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+        setTypingSpeed(100);
+      } else {
+        setTypingSpeed(isDeleting ? 50 : 100);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [showText, isDeleting, loopNum, typingSpeed]);
+
   return (
     <div className="hfirst-main-container">
       <div className="h-nav-content">
@@ -205,65 +339,176 @@ const Home = () => {
               {showOptionsInNavbar && (
                 <div className="nav-option-1">
                   <div className="nav-option-11">
-                    <p className="font-incre">City</p>
+                    <p
+                      className="font-incre"
+                      style={{
+                        color: isDefaultValue(selectedCity, "City")
+                          ? "black"
+                          : "var(--primary)",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {selectedCity}
+                    </p>
                     <RiArrowDropDownLine
                       style={{
-                        transform: isCityRotate
-                          ? "rotate(180deg)"
-                          : "rotate(0deg)",
-                        transition: isCityRotate
-                          ? "transform 0.5s ease"
-                          : "transform 0.5s ease",
+                        transform:
+                          activeDropdown === "city"
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                        transition: "transform 0.5s ease",
                         fontSize: "35px",
                         fontWeight: "600",
                         cursor: "pointer",
                       }}
-                      onClick={handleCityDropdown}
+                      onClick={() => handleDropdownToggle("city")}
                     />
+                    {activeDropdown === "city" && (
+                      <div className="city-dropdown-12">
+                        <div>
+                          {[
+                            "Mumbai",
+                            "Delhi",
+                            "Kolkata",
+                            "Bengaluru",
+                            "Chennai",
+                            "Hyderabad",
+                          ].map((city) => (
+                            <p
+                              key={city}
+                              onClick={() => {
+                                setSelectedCity(city);
+                                setShowCityDropdown(false);
+                                setIsCityRotate(false);
+                              }}
+                            >
+                              {city}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
+                  <div className="vertical-line"></div>
+
                   <div className="nav-option-12">
-                    <p className="font-incre">Own/Rent</p>
+                    <p
+                      className="font-incre"
+                      style={{
+                        color: isDefaultValue(selectedOwnRent, "Own/Rent")
+                          ? "black"
+                          : "var(--primary)",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {selectedOwnRent}
+                    </p>
                     <RiArrowDropDownLine
                       style={{
-                        transform: isOwnRotate
-                          ? "rotate(180deg)"
-                          : "rotate(0deg)",
-                        transition: isOwnRotate
-                          ? "transform 0.5s ease"
-                          : "transform 0.5s ease",
+                        transform:
+                          activeDropdown === "ownRent"
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                        transition: "transform 0.5s ease",
                         fontSize: "35px",
                         fontWeight: "600",
                         cursor: "pointer",
                       }}
-                      onClick={handleOwnDropdown}
+                      onClick={() => handleDropdownToggle("ownRent")}
                     />
+                    {activeDropdown === "ownRent" && (
+                      <div className="own-dropdown-12">
+                        <div>
+                          {["Own", "Rent"].map((option) => (
+                            <p
+                              key={option}
+                              onClick={() => {
+                                setSelectedOwnRent(option);
+                                setShowOwnDropdown(false);
+                                setIsOwnRotate(false);
+                              }}
+                            >
+                              {option}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
+                  <div className="vertical-line"></div>
+
                   <div className="nav-option-13">
-                    <p className="font-incre">Purpose</p>
+                    <p
+                      className="font-incre"
+                      style={{
+                        color: isDefaultValue(selectedPurpose, "Purpose")
+                          ? "black"
+                          : "var(--primary)",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {selectedPurpose}
+                    </p>
                     <RiArrowDropDownLine
                       style={{
-                        transform: isPurRotate
-                          ? "rotate(180deg)"
-                          : "rotate(0deg)",
-                        transition: isPurRotate
-                          ? "transform 0.5s ease"
-                          : "transform 0.5s ease",
+                        transform:
+                          activeDropdown === "purpose"
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                        transition: "transform 0.5s ease",
                         fontSize: "35px",
                         fontWeight: "600",
                         cursor: "pointer",
                       }}
-                      onClick={handlePurposeDropdown}
+                      onClick={() => handleDropdownToggle("purpose")}
                     />
+                    {activeDropdown === "purpose" && (
+                      <div className="purpose-dropdown-12">
+                        <div>
+                          <p
+                            onClick={() => {
+                              setSelectedPurpose("Residential");
+                              setShowPurposeDropdown(false);
+                              setIsPurRotate(false);
+                              navigate("/homedesign");
+                            }}
+                          >
+                            Residential
+                          </p>
+                          <p
+                            onClick={() => {
+                              setSelectedPurpose("Commercial");
+                              setShowPurposeDropdown(false);
+                              setIsPurRotate(false);
+                              navigate("/homedesignfirst");
+                            }}
+                          >
+                            Commercial
+                          </p>
+                          <p
+                            onClick={() => {
+                              setSelectedPurpose("Plot");
+                              setShowPurposeDropdown(false);
+                              setIsPurRotate(false);
+                              navigate("/homedesignsecond");
+                            }}
+                          >
+                            Plot
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
               <div className="h-second-nav">
                 <div
                   className="search-dropdown-main"
-                  onClick={handleSearchDropdown}
+                  // onClick={handleSearchDropdown}
+                  onClick={() => handleDropdownToggle("search")}
                 >
-                  <BiSearchAlt size={35} />
-                  {searchDropdown && (
+                  <BiSearchAlt size={45} />
+                  {activeDropdown === "search" && (
                     <div className="search-dropdown-1">
                       <ul className="search-li-1">
                         <li
@@ -296,21 +541,56 @@ const Home = () => {
                     onClose={handleCloseModal}
                   />
                 </div>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={() => navigate("/addproperty")}
-                >
-                  <AiFillHome size={35} />
+
+                <div style={{ position: "relative", display: "inline-block" }}>
+                  <div
+                    style={{ cursor: "pointer" }}
+                    // onClick={toggleDropdown}
+                    onClick={() => handleDropdownToggle("home")}
+                  >
+                    <AiFillHome size={45} />
+                  </div>
+
+                  {activeDropdown === "home" && (
+                    // {homeDropdownOpen && (
+                    <div className="homeDropdownContainer">
+                      <div
+                        className="homeDropdownContainerOption"
+                        onClick={() => handleOptionClick("/addproperty")}
+                      >
+                        Add New Property
+                      </div>
+                      <div className="homeDropdownContainerOption">
+                        View All Properties
+                      </div>
+                    </div>
+                  )}
                 </div>
+
                 <div>
-                  <FaHandshake size={40} />
+                  <FaHandshake size={50} />
                 </div>
                 <div
                   style={{ cursor: "pointer" }}
-                  onClick={() => handleAccountOption()}
+                  // onClick={() => handleAccountOption()}
+                  onClick={() => handleDropdownToggle("account")}
                 >
-                  <FaUser size={30} />
+                  <FaUser size={40} />
                 </div>
+                {activeDropdown === "account" && (
+                  // {isAccount && (
+                  <div className="account-details1">
+                    <p className="account-option" onClick={handleLoginClick}>
+                      Login
+                    </p>
+                    <p className="account-option" onClick={handleSignupForm}>
+                      Register as Individual
+                    </p>
+                    <p className="account-option" onClick={goToDetailPage}>
+                      Register as Channel Partner
+                    </p>
+                  </div>
+                )}
               </div>
             </>
           ) : (
@@ -402,20 +682,43 @@ const Home = () => {
           {showCityDropdown && showOptionsInNavbar && (
             <div className="city-dropdown-12">
               <div>
-                <p>Mumbai</p>
-                <p>Delhi</p>
-                <p>Kolkata</p>
-                <p>Bengaluru</p>
-                <p>Chennai</p>
-                <p>Hyderabad</p>
+                {[
+                  "Mumbai",
+                  "Delhi",
+                  "Kolkata",
+                  "Bengaluru",
+                  "Chennai",
+                  "Hyderabad",
+                ].map((city) => (
+                  <p
+                    key={city}
+                    onClick={() => {
+                      setSelectedCity(city);
+                      setShowCityDropdown(false);
+                      setIsCityRotate(false);
+                    }}
+                  >
+                    {city}
+                  </p>
+                ))}
               </div>
             </div>
           )}
           {showOwnDropdown && showOptionsInNavbar && (
             <div className="own-dropdown-12">
               <div>
-                <p>Own</p>
-                <p>Rent</p>
+                {["Own", "Rent"].map((option) => (
+                  <p
+                    key={option}
+                    onClick={() => {
+                      setSelectedOwnRent(option);
+                      setShowOwnDropdown(false);
+                      setIsOwnRotate(false);
+                    }}
+                  >
+                    {option}
+                  </p>
+                ))}
               </div>
             </div>
           )}
@@ -424,8 +727,9 @@ const Home = () => {
               <div>
                 <p
                   onClick={() => {
+                    setSelectedPurpose("Residential");
                     setShowPurposeDropdown(false);
-                    setIsPurRotate(!isPurRotate);
+                    setIsPurRotate(false);
                     navigate("/homedesign");
                   }}
                 >
@@ -433,8 +737,9 @@ const Home = () => {
                 </p>
                 <p
                   onClick={() => {
+                    setSelectedPurpose("Commercial");
                     setShowPurposeDropdown(false);
-                    setIsPurRotate(!isPurRotate);
+                    setIsPurRotate(false);
                     navigate("/homedesignfirst");
                   }}
                 >
@@ -442,8 +747,9 @@ const Home = () => {
                 </p>
                 <p
                   onClick={() => {
+                    setSelectedPurpose("Plot");
                     setShowPurposeDropdown(false);
-                    setIsPurRotate(!isPurRotate);
+                    setIsPurRotate(false);
                     navigate("/homedesignsecond");
                   }}
                 >
@@ -479,22 +785,8 @@ const Home = () => {
           <div className="divide-line-11" style={{ marginLeft: "15px" }}></div>
         </div>
       )}
-      {isAccount && (
-        <div className="account-details1">
-          <p className="account-option" onClick={handleLoginClick}>
-            Login
-          </p>
-          <p className="account-option" onClick={handleSignupForm}>
-            Register as Individual
-          </p>
-          <p className="account-option" onClick={goToDetailPage}>
-            Register as Channel Partner
-          </p>
-          <p className="account-option" onClick={goToPropertyPage}>
-            Property
-          </p>
-        </div>
-      )}
+
+      {/* ======================================= Login section ======================================= */}
       {showLogin && (
         <>
           <div className="overlay"></div>
@@ -512,21 +804,21 @@ const Home = () => {
                 <div className="login-input">
                   <div className="login-second-div">
                     <input
-                      placeholder="Enter Phone Number / Email ID"
+                      placeholder="Phone Number / Email ID"
                       style={{ border: "none" }}
                     />
                   </div>
-                  <div className="login-third-div">
+                  {/* <div className="login-third-div">
                     <button>Send OTP</button>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="login-input">
                   <div className="login-second-div">
-                    <input placeholder="Enter Otp" style={{ border: "none" }} />
+                    <input placeholder="OTP" style={{ border: "none" }} />
                   </div>
-                  <div className="login-third-div">
+                  {/* <div className="login-third-div">
                     <button>Verify OTP</button>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="link-ff">
@@ -574,6 +866,8 @@ const Home = () => {
           </div>
         </>
       )}
+
+      {/* ======================================= Register section ======================================= */}
       {showSignupComponent && (
         <>
           <div
@@ -605,7 +899,32 @@ const Home = () => {
                     <input type="number" placeholder="OTP*" />
                   </div>
                   <div className="regis-input">
-                    <input type="number" placeholder="Phone Number" />
+                    <div
+                      className="phone-input-container"
+                      style={{
+                        display: "flex",
+                        border: "1px solid gray",
+                        borderRadius: "50px",
+                        paddingLeft: "20px",
+                      }}
+                    >
+                      <select
+                        className="country-code-dropdown"
+                        style={{ border: "none", outline: "none" }}
+                      >
+                        {countryCodes.map((country, index) => (
+                          <option key={index} value={country.code}>
+                            {country.code}
+                          </option>
+                        ))}
+                      </select>
+                      <input
+                        type="text"
+                        placeholder="Phone Number"
+                        className="phone-number-input"
+                        style={{ border: "none", paddingLeft: 5 }}
+                      />
+                    </div>
                   </div>
                   <div className="regis-input">
                     <input type="number" placeholder="OTP*" />
@@ -658,6 +977,8 @@ const Home = () => {
           </div>
         </>
       )}
+
+      {/* ======================================= Home page banner section ======================================= */}
       <div
         style={{
           width: "100%",
@@ -669,23 +990,34 @@ const Home = () => {
         <div className="h-main-content">
           <p
             style={{
-              fontSize: "22px",
+              fontSize: "40px",
               textAlign: "center",
               fontWeight: "600",
               marginTop: "105px",
-              marginBottom: "20px",
+              marginBottom: "30px",
             }}
           >
-            Address In <span style={{ color: "var(--primary)" }}>India</span>
+            {showText} in<span style={{ color: "var(--primary)" }}>India</span>
           </p>
-          <div className="h-main-img">
+          <div
+            className="h-main-img"
+            style={{
+              opacity: opacity,
+              height: `${imageHeight}px`,
+              transition: "opacity 0.3s, height 0.3s",
+            }}
+          >
             <img src={header} alt="Header" />
           </div>
         </div>
         <div className="hfirst-option">
           <div className="nav-option-15">
             {!isCityRotateHeader ? (
-              <div className="nav-options-child-div">
+              <div
+                className="nav-options-child-div"
+                style={{ cursor: "pointer" }}
+                onClick={handleCityDropdownHeader}
+              >
                 <p
                   style={{
                     fontSize: isMobile ? "16px" : "18px",
@@ -705,7 +1037,6 @@ const Home = () => {
                     fontWeight: "600",
                     cursor: "pointer",
                   }}
-                  onClick={handleCityDropdownHeader}
                 />
               </div>
             ) : (
@@ -728,6 +1059,7 @@ const Home = () => {
                 />
               </div>
             )}
+
             {showCityDropdownHeader && (
               <div className="city-dropdown-13">
                 <div>
@@ -743,7 +1075,11 @@ const Home = () => {
           </div>
           <div className="vertical-line"></div>
           <div className="nav-option-16">
-            <div className="nav-options-child-div">
+            <div
+              className="nav-options-child-div"
+              style={{ cursor: "pointer" }}
+              onClick={handleOwnDropdownHeader}
+            >
               <p style={{ fontSize: "18px", fontWeight: "600" }}>
                 Do you want to <span className="text-color-1">Own</span> or{" "}
                 <span className="text-color-1">Rent</span>?
@@ -758,7 +1094,6 @@ const Home = () => {
                   fontWeight: "600",
                   cursor: "pointer",
                 }}
-                onClick={handleOwnDropdownHeader}
               />
             </div>
             {showOwnDropdownHeader && (
@@ -771,22 +1106,34 @@ const Home = () => {
             )}
           </div>
         </div>
-        <div className="select-search-div-1">
-          <p style={{ fontSize: "18px", fontWeight: "600" }}>
-            What is the <span className="text-color-1">Purpose</span>?
-          </p>
-          <RiArrowDropDownLine
-            style={{
-              transform: isPurRotateHeader ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 0.5s ease",
-              fontSize: "35px",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
-            onClick={handlePurposeDropdownHeader}
-          />
+        <div style={{ position: "absolute", width: "100%" }}>
+          <div className="select-search-div-1" style={{ cursor: "pointer" }}>
+            <div
+              style={{ display: "flex", alignItems: "center" }}
+              onClick={handlePurposeDropdownHeader}
+            >
+              <p style={{ fontSize: "18px", fontWeight: "600" }}>
+                What is the <span className="text-color-1">Purpose</span>?
+              </p>
+              <RiArrowDropDownLine
+                style={{
+                  transform: isPurRotateHeader
+                    ? "rotate(180deg)"
+                    : "rotate(0deg)",
+                  transition: "transform 0.5s ease",
+                  fontSize: "35px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                }}
+              />
+            </div>
+            <div className="searchIconInPurpose">
+              <BiSearchAlt size={30} color="#fff" />
+            </div>
+          </div>
+
           {showPurposeDropdownHeader && (
-            <div className="purpose-dropdown-13">
+            <div className="purpose-dropdown-13" style={{ width: "300px" }}>
               <div>
                 <p
                   onClick={() => {
@@ -820,10 +1167,15 @@ const Home = () => {
           )}
         </div>
       </div>
+      {/* ======================================= Home page sticky filter section ======================================= */}
       {showOptionsInNavbar && (
         <div className="home-container">
           <div
-            style={{ display: "flex", width: "100%", margin: "auto" }}
+            style={{
+              display: "flex",
+              width: "100%",
+              margin: "auto",
+            }}
             className="sticky-filter-1"
           >
             <div onClick={toggleFilterModal}>
@@ -838,17 +1190,22 @@ const Home = () => {
               <p>Filter</p>
             </div>
             <div
-              className="divide-line-11"
+              className="vertical-line"
               style={{ marginRight: "15px", marginLeft: "15px" }}
             ></div>
-            <div className="budget-div">
-              <div>
-                <p>₹ Budget</p>
+            <div className="budget-div-1" style={{ width: "15%" }}>
+              <div className="budget-rupee-icon">
+                <MdCurrencyRupee size={24} style={{ marginRight: "10px" }} />
               </div>
-              <div className="div-min-max">
-                <div className="nav-min">Min</div>
-                <p>To</p>
-                <div className="nav-min">Max</div>
+              <div className="budget-div-2">
+                <div className="div-min-max-1">
+                  <input type="text" className="input-text" placeholder="Min" />
+                  <p style={{ fontSize: "14px", margin: "0 10px" }}>To</p>
+                  <input type="text" className="input-text" placeholder="Max" />
+                </div>
+                <div>
+                  <p style={{ fontSize: "13px" }}>Budget</p>
+                </div>
               </div>
             </div>
             <div
@@ -867,6 +1224,7 @@ const Home = () => {
           <Footer1 />
         </div>
       )}
+
       {isFilterModalOpen && (
         <div className="modal-overlay" onClick={toggleFilterModal}>
           <div

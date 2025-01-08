@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Style/Detailpage.css";
 import SelectAgent from "./SelectAgent";
 import YetToVisit from "./YetToVisit";
@@ -17,6 +17,10 @@ const DetailPage = () => {
   const isMobile = window.innerWidth <= 768;
   // State to track the active option and components to display
   const [activeOption, setActiveOption] = useState("Select an agent");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Component rendering based on the active option
   const renderContent = () => {

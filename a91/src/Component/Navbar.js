@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Style/Navbar.css";
 import "../Style/Login.css";
-import logo from "../Asset/Navbar/logo.png";
+import logo from "../Asset/Navbar/a91.png";
 
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,6 +12,35 @@ import { BiSearchAlt } from "react-icons/bi";
 import { AiFillHome } from "react-icons/ai";
 import { FaHandshake } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
+const countryCodes = [
+  { code: "+91", label: "India" },
+  { code: "+1", label: "USA" },
+  { code: "+2", label: "Canada" },
+  { code: "+3", label: "Mexico" },
+  { code: "+4", label: "Brazil" },
+  { code: "+5", label: "Argentina" },
+  { code: "+6", label: "Colombia" },
+  { code: "+7", label: "Peru" },
+  { code: "+8", label: "Venezuela" },
+  { code: "+9", label: "Chile" },
+  { code: "+10", label: "Ecuador" },
+  { code: "+11", label: "Guatemala" },
+  { code: "+12", label: "Cuba" },
+  { code: "+13", label: "Haiti" },
+  { code: "+14", label: "Dominican Republic" },
+  { code: "+15", label: "Honduras" },
+  { code: "+16", label: "Paraguay" },
+  { code: "+17", label: "El Salvador" },
+  { code: "+18", label: "Nicaragua" },
+  { code: "+19", label: "Costa Rica" },
+  { code: "+20", label: "Panama" },
+  { code: "+21", label: "Jamaica" },
+  { code: "+22", label: "Trinidad and Tobago" },
+  { code: "+23", label: "Bahamas" },
+  { code: "+24", label: "Barbados" },
+  { code: "+25", label: "Saint Lucia" },
+  { code: "+26", label: "Saint Vincent and the Grenadines" },
+];
 
 const Navbar = () => {
   const isMobile = window.innerWidth <= 768;
@@ -244,24 +273,24 @@ const Navbar = () => {
           }}
         >
           {!isMobile ? (
-            <div className="h-second-nav">
+            <div className="h-second-nav_">
               <div>
-                <BiSearchAlt size={35} />
+                <BiSearchAlt size={45} />
               </div>
               <div
                 style={{ cursor: "pointer" }}
                 onClick={() => navigate("/addproperty")}
               >
-                <AiFillHome size={35} />
+                <AiFillHome size={45} />
               </div>
               <div>
-                <FaHandshake size={40} />
+                <FaHandshake size={50} />
               </div>
               <div
                 style={{ cursor: "pointer" }}
                 onClick={() => handleAccountOption()}
               >
-                <FaUser size={30} />
+                <FaUser size={40} />
               </div>
             </div>
           ) : (
@@ -301,24 +330,21 @@ const Navbar = () => {
                     <div className="login-input" style={{ marginTop: "20px" }}>
                       <div className="login-second-div">
                         <input
-                          placeholder="Enter Phone Number / Email ID"
+                          placeholder="Phone Number / Email ID"
                           style={{ border: "none" }}
                         />
                       </div>
-                      <div className="login-third-div">
-                        <button>Send Otp</button>
-                      </div>
+                      {/* <div className="login-third-div">
+                        <button>Send OTP</button>
+                      </div> */}
                     </div>
                     <div className="login-input">
                       <div className="login-second-div">
-                        <input
-                          placeholder="Enter Otp"
-                          style={{ border: "none" }}
-                        />
+                        <input placeholder="OTP" style={{ border: "none" }} />
                       </div>
-                      <div className="login-third-div">
-                        <button>Verify Otp</button>
-                      </div>
+                      {/* <div className="login-third-div">
+                        <button>Verify OTP</button>
+                      </div> */}
                     </div>
 
                     <div className="link-ff">
@@ -394,13 +420,38 @@ const Navbar = () => {
                         <input type="email" placeholder="Email ID" />
                       </div>
                       <div className="regis-input">
-                        <input type="number" placeholder="Enter Otp*" />
+                        <input type="number" placeholder="Enter OTP*" />
                       </div>
                       <div className="regis-input">
-                        <input type="number" placeholder="Phone Number" />
+                        <div
+                          className="phone-input-container"
+                          style={{
+                            display: "flex",
+                            border: "1px solid gray",
+                            borderRadius: "50px",
+                            paddingLeft: "20px",
+                          }}
+                        >
+                          <select
+                            className="country-code-dropdown"
+                            style={{ border: "none", outline: "none" }}
+                          >
+                            {countryCodes.map((country, index) => (
+                              <option key={index} value={country.code}>
+                                {country.code}
+                              </option>
+                            ))}
+                          </select>
+                          <input
+                            type="text"
+                            placeholder="Phone Number"
+                            className="phone-number-input"
+                            style={{ border: "none", paddingLeft: 5 }}
+                          />
+                        </div>
                       </div>
                       <div className="regis-input">
-                        <input type="number" placeholder="Enter Otp*" />
+                        <input type="number" placeholder="Enter OTP*" />
                       </div>
                     </div>
                     <div className="regis-input1">

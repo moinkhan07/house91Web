@@ -35,39 +35,37 @@
   font-weight: 600;
 }
 .select-agent-content {
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin: auto;
   margin-top: 30px;
   margin-bottom: 20px;
-  gap: 20px;
+  gap: 10px;
 }
 .select-agent-content-div {
-  width: fit-content;
-  border: 1.5px solid gray;
+  width: 45%;
+  border: 2px solid lightgray;
   border-radius: 15px;
-  padding: 15px 5px 15px 25px;
+  padding: 12px;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
 }
-.circle-checkbox {
-  width: 20px; /* Adjust size as needed */
-  height: 20px; /* Same as width for a perfect circle */
-  border-radius: 50%; /* Makes the checkbox circular */
-  border: 2px solid var(--primary);
-  appearance: none; /* Removes default checkbox styles */
-  outline: none;
-  cursor: pointer;
+.select-agent-content-div_First {
+  width: 20%;
 }
-
-.circle-checkbox:checked {
-  background-color: var(--primary); /* Color when checked */
-  border-color: var(--primary);
+.select-agent-content-div_First > img {
+  width: 100%;
+  object-fit: contain;
 }
-
-.circle-checkbox:focus {
-  box-shadow: 0 0 3px var(--primary); /* Optional: Focus indicator */
+.select-agent-content-div_Second {
+  width: 72%;
+}
+.select-agent-content-div_Third {
+  width: 4%;
 }
 
 .agent-show-bottom-button {
@@ -89,6 +87,28 @@
   cursor: pointer;
 }
 
+.agent-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.agent-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.agent-key {
+  font-weight: bold;
+}
+
+.agent-value {
+  text-align: justify;
+  width: 50%;
+}
+
 /* =============Modal */
 .modal_agent {
   position: fixed;
@@ -105,10 +125,10 @@
 
 .modal-content_agent {
   background-color: white;
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   text-align: left;
-  width: 50%;
+  width: 60%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -126,12 +146,11 @@
 }
 
 .modal-content_agent ul {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   padding-left: 50px;
 }
 .modal-content_agent ul > li {
-  font-weight: 550;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .acceptBtnContainer {
